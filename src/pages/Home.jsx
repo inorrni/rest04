@@ -138,7 +138,7 @@ function OurServices() {
         </h2>
       </div>
 
-      <div className="scrollbar-hide flex gap-6 overflow-x-auto px-4 pb-4 md:px-10 lg:px-40">
+      <div className="scrollbar-hide mx-auto flex max-w-container justify-center gap-6 overflow-x-auto px-4 pb-4 md:px-10 lg:px-40">
         {serviceCards.map((s) => (
           <Link
             key={s.key}
