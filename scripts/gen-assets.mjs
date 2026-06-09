@@ -96,9 +96,9 @@ await sharp({
   ])
   .flatten({ background: NAVY })
   .jpeg({ quality: 92 })
-  .toFile(path.join(publicDir, 'og-image.jpg'))
+  .toFile(path.join(publicDir, 'og-image-v2.jpg'))
 
-console.log('✓ og-image.jpg (1200×630, JPG)')
+console.log('✓ og-image-v2.jpg (1200×630, JPG)')
 
 // ── 파비콘 SVG ──────────────────────────────
 const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
