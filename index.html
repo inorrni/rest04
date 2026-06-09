@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENV-DX — 환경을 데이터로, 현장을 시스템으로</title>
+    <meta name="description" content="폐기물·수질·대기 환경 관리의 디지털 전환을 선도합니다. AI 기반 환경 데이터 분석·법정 문서 자동화·IoT 모니터링." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ENV-DX" />
+    <meta property="og:title" content="ENV-DX — 환경을 데이터로, 현장을 시스템으로" />
+    <meta property="og:description" content="폐기물·수질·대기 환경 관리의 디지털 전환을 선도합니다." />
+    <meta property="og:url" content="https://inorrni.github.io/rest04/" />
+    <meta property="og:image" content="https://inorrni.github.io/rest04/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://inorrni.github.io/rest04/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ENV-DX 환경 디지털 전환 솔루션" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ENV-DX — 환경을 데이터로, 현장을 시스템으로" />
+    <meta name="twitter:description" content="폐기물·수질·대기 환경 관리의 디지털 전환을 선도합니다." />
+    <meta name="twitter:image" content="https://inorrni.github.io/rest04/og-image.jpg" />
+
+    <!-- Dark mode flash prevention -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem('theme')
+        const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', saved || preferred)
+      })()
+    </script>
+
+    <!-- Pretendard font -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
