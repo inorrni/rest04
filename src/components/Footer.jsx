@@ -1,87 +1,95 @@
 import { Link } from 'react-router-dom'
-import { company } from '../data/site'
+import { company, nav } from '../data/site'
 
 export default function Footer() {
   return (
-    <footer className="relative">
-      {/* 상단 소개 영역 */}
-      <div className="mx-auto max-w-container px-4 py-20 dark:bg-neutral-900 md:px-10 lg:px-40">
-        <div className="flex flex-col items-start gap-8 md:flex-row md:items-center">
-          <div className="w-56 shrink-0">
-            <div className="flex items-center gap-2 text-2xl font-extrabold text-brand">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-eco text-base text-white">🌿</span>
-              {company.name}
-            </div>
-          </div>
-          <div className="flex-grow text-base leading-7 text-neutral-700 dark:text-neutral-300 md:text-[1.05rem]">
-            {company.intro.map((p, i) => (
-              <p key={i} className="mb-4 last:mb-0">{p}</p>
-            ))}
-          </div>
-        </div>
-      </div>
+    <footer className="bg-neutral-950 text-neutral-400">
+      {/* 상단: 로고·소개 + 사이트맵 */}
+      <div className="mx-auto max-w-container px-4 py-16 md:px-10 lg:px-40">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_auto]">
 
-      {/* 하단 다크 영역 */}
-      <div className="bg-neutral-950 px-4 py-12 md:px-10 lg:px-40">
-        <div className="mx-auto flex max-w-container flex-col gap-10">
-          <div className="flex flex-col justify-between gap-8 md:flex-row">
+          {/* 좌측: 브랜드 + 소개 */}
+          <div className="max-w-md">
+            <div className="mb-5 flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-eco text-base text-white">
+                🌿
+              </span>
+              <span className="text-xl font-extrabold text-white">{company.name}</span>
+            </div>
+            <div className="space-y-3 text-sm leading-7">
+              {company.intro.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
             {/* 주소 */}
-            <div className="flex flex-col gap-2.5 text-sm">
+            <div className="mt-8 space-y-1 text-xs text-neutral-500">
               {company.offices.map((o) => (
-                <div
-                  key={o.label}
-                  className="flex flex-col gap-1 md:flex-row md:gap-8"
-                >
-                  <div className="w-14 shrink-0 font-bold text-neutral-200">{o.label}</div>
-                  <ul className="flex flex-col gap-1 font-medium text-neutral-400 md:flex-row md:gap-8">
-                    <li className="md:w-60">{o.address}</li>
-                    <li className="md:w-32">Tel : {o.tel}</li>
-                    <li>Fax : {o.fax}</li>
-                  </ul>
+                <div key={o.label} className="flex flex-wrap gap-x-5 gap-y-0.5">
+                  <span className="font-semibold text-neutral-400">{o.label}</span>
+                  <span>{o.address}</span>
+                  <span>Tel {o.tel}</span>
+                  <span>Fax {o.fax}</span>
                 </div>
               ))}
             </div>
-
-            {/* Family site */}
-            <div className="w-full md:w-56">
-              <select
-                aria-label="Family site"
-                className="w-full rounded border border-zinc-600 bg-transparent px-4 py-2.5 text-sm font-bold text-neutral-300"
-                defaultValue=""
-                onChange={(e) => {
-                  if (e.target.value) window.open(e.target.value, '_blank')
-                }}
-              >
-                <option value="" disabled>Family site</option>
-                {company.familySites.map((f) => (
-                  <option key={f.name} value={f.url} className="text-black">
-                    {f.name}
-                  </option>
-                ))}
-              </select>
-            </div>
           </div>
 
-          {/* 정책 링크 + 카피라이트 */}
-          <div className="flex flex-col justify-between gap-4 border-t border-neutral-800 pt-4 text-sm md:flex-row md:items-center">
-            <ul className="flex">
-              {company.footerLinks.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    to={l.to}
-                    className={[
-                      'px-6 first:pl-0',
-                      l.strong
-                        ? 'font-black text-white'
-                        : 'font-medium text-neutral-400 hover:text-white',
-                    ].join(' ')}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
+          {/* 우측: 사이트맵 */}
+          <div className="flex gap-12">
+            {nav.map((item) => (
+              <div key={item.label}>
+                <p className="mb-4 text-xs font-bold uppercase tracking-widest text-neutral-500">
+                  {item.label}
+                </p>
+                <ul className="space-y-3">
+                  {item.children.map((c) => (
+                    <li key={c.to + c.label}>
+                      <Link
+                        to={c.to}
+                        className="text-sm transition hover:text-white"
+                      >
+                        {c.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* 하단 바: 정책 링크 + Family site + 카피라이트 */}
+      <div className="border-t border-neutral-800">
+        <div className="mx-auto flex max-w-container flex-col items-start justify-between gap-4 px-4 py-6 text-xs md:flex-row md:items-center md:px-10 lg:px-40">
+          <ul className="flex flex-wrap gap-x-1">
+            {company.footerLinks.map((l, i) => (
+              <li key={l.label} className="flex items-center">
+                {i > 0 && <span className="mx-3 text-neutral-700">|</span>}
+                <Link
+                  to={l.to}
+                  className={l.strong ? 'font-bold text-white' : 'hover:text-white'}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-6">
+            <select
+              aria-label="Family site"
+              className="rounded border border-neutral-700 bg-transparent px-3 py-1.5 text-xs text-neutral-400 focus:outline-none"
+              defaultValue=""
+              onChange={(e) => { if (e.target.value) window.open(e.target.value, '_blank') }}
+            >
+              <option value="" disabled>Family site</option>
+              {company.familySites.map((f) => (
+                <option key={f.name} value={f.url} className="text-black">{f.name}</option>
               ))}
-            </ul>
-            <p className="text-zinc-500">{company.copyright}</p>
+            </select>
+            <p className="text-neutral-600">{company.copyright}</p>
           </div>
         </div>
       </div>
