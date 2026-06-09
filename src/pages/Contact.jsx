@@ -2,6 +2,7 @@ import { useState } from 'react'
 import SubPageLayout from '../components/SubPageLayout'
 import { inquiryTypes } from '../data/site'
 import { submitInquiry } from '../lib/inquiries'
+import { subpageImages } from '../data/images'
 
 const tabs = [{ label: '도입 문의', to: '/contact', end: true }]
 
@@ -128,7 +129,7 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <SubPageLayout sectionTitle="문의" tabs={tabs} headLabel="contact">
+    <SubPageLayout sectionTitle="문의" tabs={tabs} headLabel="contact" imageUrl={subpageImages.contact}>
       <ContactForm />
     </SubPageLayout>
   )

@@ -55,7 +55,11 @@ export default function Videos() {
     return filtered.slice(start, start + VIDEOS_PER_PAGE)
   }, [filtered, page])
 
-  const handleCat = (id) => { setActiveCat(id); setPage(1) }
+  const handleCat = (id) => {
+    setActiveCat(id)
+    setPage(1)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <div>

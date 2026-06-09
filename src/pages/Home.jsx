@@ -138,7 +138,8 @@ function OurServices() {
         </h2>
       </div>
 
-      <div className="scrollbar-hide mx-auto flex max-w-container justify-center gap-6 overflow-x-auto px-4 pb-4 md:px-10 lg:px-40">
+      <div className="overflow-x-auto scrollbar-hide">
+      <div className="mx-auto flex w-fit gap-6 px-4 pb-4 md:px-10 lg:px-40">
         {serviceCards.map((s) => (
           <Link
             key={s.key}
@@ -160,6 +161,7 @@ function OurServices() {
             </div>
           </Link>
         ))}
+      </div>
       </div>
     </section>
   )

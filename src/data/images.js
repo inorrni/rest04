@@ -30,4 +30,6 @@ export const subpageImages = {
   monitor:       U('1501854140801-50d01698950b'),  // 수질 모니터링
   'legal-doc':   U('1450101499163-c8848c66ca85'),  // 법정 문서
   'ai-analysis': U('1620712943543-bcc4688e7485'),  // AI 분석 시각화
+  // 문의
+  contact:       U('1521737852567-6949f3f9f2b5'),  // 팀 협업·소통
 }
