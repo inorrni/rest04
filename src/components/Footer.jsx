@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
-import { company, nav } from '../data/site'
+import { company } from '../data/site'
 
 export default function Footer() {
   return (
     <footer className="bg-neutral-950 text-neutral-400">
       {/* 상단: 로고·소개 + 사이트맵 */}
       <div className="mx-auto max-w-container px-4 py-16 md:px-10 lg:px-40">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_auto]">
+        <div>
 
-          {/* 좌측: 브랜드 + 소개 */}
+          {/* 브랜드 + 소개 */}
           <div className="max-w-md">
             <div className="mb-5 flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-eco text-base text-white">
@@ -32,29 +32,6 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* 우측: 사이트맵 */}
-          <div className="flex gap-12">
-            {nav.map((item) => (
-              <div key={item.label}>
-                <p className="mb-4 text-xs font-bold uppercase tracking-widest text-neutral-500">
-                  {item.label}
-                </p>
-                <ul className="space-y-3">
-                  {item.children.map((c) => (
-                    <li key={c.to + c.label}>
-                      <Link
-                        to={c.to}
-                        className="text-sm transition hover:text-white"
-                      >
-                        {c.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
 
         </div>
