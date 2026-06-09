@@ -43,8 +43,9 @@ await sharp({
 
           <!-- 로고 아이콘 배경 -->
           <rect x="80" y="200" width="72" height="72" rx="16"
-            fill="none" stroke="${SKY}" stroke-opacity="0.4" stroke-width="1.5"/>
-          <text x="116" y="248" font-size="36" text-anchor="middle" dominant-baseline="middle">🌿</text>
+            fill="url(#g1)" fill-opacity="0.3" stroke="${SKY}" stroke-opacity="0.5" stroke-width="1.5"/>
+          <path d="M126 216c-9 2-11.1 8.17-13.18 13.34l1.89.66 1-2.3a4.49 4.49 0 002.29-.7c11 0 14-17 14-17-1 2-8 2-8 8 0 0-2-2-5-2z"
+            fill="${SKY}" opacity="0.9"/>
 
           <!-- 회사명 -->
           <text x="80" y="320"

@@ -112,7 +112,7 @@ function ContactForm() {
           <div aria-live="polite">
             {status === 'success' && (
               <p className="rounded-lg bg-eco/10 px-4 py-3 text-sm font-medium text-eco">
-                ✓ 문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다.
+                문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다.
               </p>
             )}
             {status === 'error' && (

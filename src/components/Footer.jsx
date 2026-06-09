@@ -11,8 +11,10 @@ export default function Footer() {
           {/* 브랜드 + 소개 */}
           <div className="max-w-md">
             <div className="mb-5 flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-eco text-base text-white">
-                🌿
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-eco text-white">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+                  <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 8 0 0-2-2-5-2z"/>
+                </svg>
               </span>
               <span className="text-xl font-extrabold text-white">{company.name}</span>
             </div>

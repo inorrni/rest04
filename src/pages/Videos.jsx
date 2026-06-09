@@ -10,8 +10,10 @@ function VideoCard({ video }) {
       <div className="relative aspect-video bg-neutral-100 dark:bg-neutral-700">
         {isPlaceholder ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand/20 to-eco/10">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 pl-1 text-xl text-white/70">
-              ▶
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/30 bg-white/10">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 translate-x-0.5 text-white/70" aria-hidden="true">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
             </div>
             <p className="text-sm font-medium text-neutral-400 dark:text-neutral-500">영상 준비 중</p>
           </div>
