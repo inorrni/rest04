@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { nav, company } from '../data/site'
+import { useAuth } from '../context/AuthContext'
 
 const IconLeaf = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
@@ -38,6 +39,14 @@ const IconClose = () => (
 export default function Header({ theme, onToggleTheme }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [hovered, setHovered] = useState(null)
+  const { user, signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    await signOut()
+    setMobileOpen(false)
+    navigate('/')
+  }
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -100,10 +109,45 @@ export default function Header({ theme, onToggleTheme }) {
                 )}
               </li>
             ))}
+
+            {/* 게시판 (드롭다운 없음, 회원 전용) */}
+            <li className="flex items-center">
+              <NavLink
+                to="/board"
+                className={({ isActive }) =>
+                  [
+                    'px-7 py-7 text-lg font-semibold transition-colors',
+                    isActive
+                      ? 'text-brand'
+                      : 'text-neutral-800 hover:text-brand dark:text-neutral-200 dark:hover:text-brand',
+                  ].join(' ')
+                }
+              >
+                게시판
+              </NavLink>
+            </li>
           </ul>
 
           {/* 오른쪽 액션 */}
           <div className="flex items-center gap-2">
+            {/* 로그인 / 로그아웃 (데스크탑) */}
+            {user ? (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="hidden rounded-lg border border-neutral-200 px-3 py-2 text-sm font-semibold text-neutral-700 transition hover:border-brand hover:text-brand dark:border-neutral-700 dark:text-neutral-200 lg:block"
+              >
+                로그아웃
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white transition hover:brightness-110 lg:block"
+              >
+                로그인
+              </Link>
+            )}
+
             <button
               type="button"
               onClick={onToggleTheme}
@@ -172,7 +216,37 @@ export default function Header({ theme, onToggleTheme }) {
                   </ul>
                 </li>
               ))}
+              {/* 게시판 (모바일) */}
+              <li className="border-b border-neutral-100 pb-2 dark:border-neutral-800">
+                <Link
+                  to="/board"
+                  className="block py-2 text-lg font-bold text-neutral-900 dark:text-neutral-100"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  게시판
+                </Link>
+              </li>
             </ul>
+
+            {/* 로그인 / 로그아웃 (모바일) */}
+            {user ? (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="mt-4 w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm font-semibold text-neutral-700 dark:border-neutral-700 dark:text-neutral-200"
+              >
+                로그아웃
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setMobileOpen(false)}
+                className="mt-4 block rounded-lg bg-brand px-4 py-3 text-center text-sm font-bold text-white"
+              >
+                로그인
+              </Link>
+            )}
+
             <button
               type="button"
               onClick={() => { onToggleTheme(); setMobileOpen(false) }}
