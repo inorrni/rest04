@@ -35,11 +35,14 @@ export function AuthProvider({ children }) {
       supabase.auth.signInWithPassword({ email, password }),
 
     // 카카오 OAuth 로그인 — 콜백은 배포 경로(BASE_URL)로 복귀
+    // 이메일(account_email)은 카카오 비즈앱 전환을 요구하므로 요청하지 않고,
+    // 닉네임만 받는다. (게시판 식별은 author_id(uuid), 표시는 닉네임)
     signInWithKakao: () =>
       supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
           redirectTo: `${window.location.origin}${import.meta.env.BASE_URL}`,
+          scopes: 'profile_nickname',
         },
       }),
 
