@@ -35,14 +35,14 @@ export function AuthProvider({ children }) {
       supabase.auth.signInWithPassword({ email, password }),
 
     // 카카오 OAuth 로그인 — 콜백은 배포 경로(BASE_URL)로 복귀
-    // 이메일(account_email)은 카카오 비즈앱 전환을 요구하므로 요청하지 않고,
-    // 닉네임만 받는다. (게시판 식별은 author_id(uuid), 표시는 닉네임)
+    // 주의: Supabase(GoTrue)는 카카오에서 account_email·profile_image·profile_nickname을
+    // 서버에서 강제로 요청한다. 클라이언트 scopes 옵션으로는 이 기본 scope를 제거할 수 없으므로,
+    // 카카오 디벨로퍼스 동의항목에서 이 3개를 모두 활성화해야 한다. (account_email은 비즈앱 필요)
     signInWithKakao: () =>
       supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
           redirectTo: `${window.location.origin}${import.meta.env.BASE_URL}`,
-          scopes: 'profile_nickname',
         },
       }),
 

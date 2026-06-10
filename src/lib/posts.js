@@ -1,5 +1,8 @@
 import { supabase } from './supabase'
 
+// 공유 Supabase 프로젝트에서 테이블 충돌을 피하기 위한 접두어
+const TABLE = 'rest04_posts'
+
 // 게시판 카테고리 정의 (UI·검증 공용)
 export const BOARDS = [
   { key: 'notice', label: '공지사항' },
@@ -13,7 +16,7 @@ export const boardLabel = (key) =>
 // 목록 — 카테고리별(또는 전체) 최신순
 export async function listPosts(category) {
   let query = supabase
-    .from('posts')
+    .from(TABLE)
     .select('id, category, title, author_name, created_at')
     .order('created_at', { ascending: false })
 
@@ -27,7 +30,7 @@ export async function listPosts(category) {
 // 단건 상세
 export async function getPost(id) {
   const { data, error } = await supabase
-    .from('posts')
+    .from(TABLE)
     .select('*')
     .eq('id', id)
     .single()
@@ -38,7 +41,7 @@ export async function getPost(id) {
 // 작성 — author_id 는 RLS·DB default(auth.uid())로 채워지지만 명시도 함께
 export async function createPost({ category, title, content, authorId, authorName }) {
   const { data, error } = await supabase
-    .from('posts')
+    .from(TABLE)
     .insert([{ category, title, content, author_id: authorId, author_name: authorName }])
     .select('id')
     .single()
@@ -49,7 +52,7 @@ export async function createPost({ category, title, content, authorId, authorNam
 // 수정 — 본인 글만 (RLS가 강제)
 export async function updatePost(id, { title, content, category }) {
   const { error } = await supabase
-    .from('posts')
+    .from(TABLE)
     .update({ title, content, category })
     .eq('id', id)
   if (error) throw error
@@ -57,6 +60,6 @@ export async function updatePost(id, { title, content, category }) {
 
 // 삭제 — 본인 글만 (RLS가 강제)
 export async function deletePost(id) {
-  const { error } = await supabase.from('posts').delete().eq('id', id)
+  const { error } = await supabase.from(TABLE).delete().eq('id', id)
   if (error) throw error
 }
